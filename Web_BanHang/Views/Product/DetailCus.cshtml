@@ -1,0 +1,127 @@
+﻿@model Web_BanHang.Models.Product
+
+@{
+    ViewBag.Title = "DetailCus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .dl-horizontal{
+        margin-left: 400px;
+    }
+    .form-control{
+        width: 30%;
+    }
+</style>
+<body>
+    <div id="contant">
+        <div id="div_top">
+            <h2 style="text-align: center; font-size: 50px; font-family: monospace "> @Html.DisplayFor(model => model.NamePro)</h2>
+        </div>
+
+       
+            <div class="control-label col-md-6">
+                <img src="@Url.Content(Model.ImagePro)" height="500" width="500" />
+            </div>
+            
+            <div class="control-label col-md-4">
+                @Html.DisplayFor(model => model.DecriptionPro)
+
+                <p style="font-size:50px ;font-family:cursive">  @Html.DisplayFor(model => model.Price)0 Vnd</p>
+                <a href="/ShoppingCart/AddToCart/@Model.ProductID" class="btn btn-default">Mua hàng</a>
+            </div>
+
+        <div>
+            <footer>
+                <p>
+                    @Html.ActionLink("Trở về", "Index_Customers")
+                </p>
+
+            </footer>
+
+        </div>
+    </div>
+   
+   
+
+</body>
+
+
+   
+            
+     
+       
+   
+
+
+<!--<dl class="dl-horizontal">
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.NamePro)*@
+        <!--<b>Tên sản phẩm</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.NamePro)
+    </dd>
+    </div>
+
+
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.DecriptionPro)*@
+        <!--<b>Mô tả</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.DecriptionPro)
+    </dd>
+    </div>
+
+
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.Category)*@
+        <!--<b>Loại sản phẩm</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.Category)
+    </dd>
+    </div>
+
+
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.Price)*@
+        <!--<b>Đơn giá</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+    </div>
+
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.ImagePro)*@
+        <!--<b>Hình ảnh</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.ImagePro)
+    </dd>
+    </div>
+
+    <div class="form-group">
+    <dt>-->
+        @*@Html.DisplayNameFor(model => model.Quantity)*@
+        <!--<b>Số lượng</b>
+    </dt>
+
+    <dd class="form-control text-box">
+        @Html.DisplayFor(model => model.Quantity)
+    </dd>
+    </div>
+
+
+</dl>-->

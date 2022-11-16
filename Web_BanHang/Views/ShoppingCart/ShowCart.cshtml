@@ -1,0 +1,81 @@
+﻿@model Web_BanHang.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="padding-top: 20px">Giỏ hàng</h2>
+<a href="@Url.Action("Index_Customers","Product")">Tiếp tục mua hàng</a>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Tên sản phẩm</td>
+                <td> Hình sản phẩm</td>
+                <td>Giá</td>
+                <td> Số lượng</td>
+                <td> Thành tiền</td>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                decimal total = item._quantity * (decimal)item._product.Price.Value;
+                <tr> 
+                    <td>@Html.DisplayFor(model => item._product.NamePro)</td>
+                    <td><img src="@Url.Content(item._product.ImagePro)" height="50" width="50" /></td>
+                    <td>@Html.DisplayFor(model => item._product.Price)</td>
+                    <td>
+                        @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item._product.ProductID" name="idPro" />
+                            <input type="number" value="@item._quantity" name="cartQuantity" />
+                            <input type="submit" value="Update" />
+                        }
+                    </td>
+                    <td>@total</td>
+                    <td>
+                        <a href="/ShoppingCart/RemoveCart/@item._product.ProductID">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="text-align: right">Tổng tiền: @Model.Total_money()</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="4">
+                @using(Html.BeginForm("CheckOut","ShoppingCart"))
+                {
+                    <table style="border-collapse:separate; border-spacing:5px;">
+                        <tr>
+                            <td>Mã khách hàng</td>
+                            <td><input type="number" name="CodeCustomer" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ vận chuyển:</td>
+                            <td><input type="text" name="AddressDeliverry" required/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Kiểm tra" class="btn btn-success"/>
+                                <a href="@Url.Action("RegisterUser", "LoginUser")" class="btn btn-success">Đăng Ký</a>
+                            </td>
+                        </tr>
+                    </table>
+                }  
+                 </td>   
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    @Html.Partial("EmtyCart")
+}

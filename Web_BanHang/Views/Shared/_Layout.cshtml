@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/script.js"> </script>
+    <style>
+        .search{
+            text-align:center;
+        }
+        li.format-hello {
+            padding-top: 15px;
+            color:#000000;
+        }
+        #animation-top5:hover{
+            color:white;
+            text-shadow: 1px 1px 2px gray, 0 0 25px red, 0 0 5px red; 
+            height: 10px;
+        }
+        .navbar-inverse .navbar-brand {
+            color: black;
+        }
+        .navbar-inverse .navbar-nav > li > a {
+            color: black;
+        }
+    </style>
+</head>
+<body>   
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: lightcoral">  
+        <div class="container">
+            <div class="navbar-header">
+               
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ToyStore", "Index_Customers", "Product", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="color: #000000">
+
+                    <li>@Html.ActionLink("Người Bán Hàng", "Create", "Product")</li>
+                    <li>@Html.ActionLink("Hỗ trợ", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <span>
+                            <a href="/ShoppingCart/ShowCart">
+                                <img src="@Url.Content("~/Content/images/logo.jpg")" style="height:30px; width:30px; margin-top:10px;" />
+                            </a>
+                        </span>
+                        @Html.Action("BagCart", "ShoppingCart")
+                    </li>
+                    <li><a href="/LoginUser/RegisterUser"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                    <li><a href="/LoginUser/Index"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <li><a href="@Url.Action("LogOutUser", "LoginUser")"><span class="glyphicon glyphicon-log-out"></span>LogOut</a></li>
+                    <li class="format-hello">
+                        @if (Session["NameUser"] == null)
+                        {
+                            <span>Hello</span>
+                        }
+                        else
+                        {
+                            <span><text>Hello</text> @Session["NameUser"]</span>
+                        }
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="search">
+                @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                {
+                    <input style="height:30px; width:1000px" type="text" name="_name" />
+                    <input style="height:30px" type="submit" value="Search" />
+                }
+            </div>
+
+        </div>
+        <div class="category">
+            @{Html.RenderAction("CategoryPartial", "Categories"); }
+        </div>
+    </div>
+    
+    <div class="container-fluid body-content">
+        <div style="text-align: center">
+            <ul style="text-decoration:none; background-color:palevioletred; margin-top:100px; list-style-type:none; padding: 20px;">
+            <li><a href="/OrderDetail/GroupByTop5/" style="color:black;" id="animation-top5">Top 5 sản phẩm bán chạy nhất</a></li>
+            </ul>
+            <div class="col-md" id="div-content">
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-">
+        <footer style="background-color: lightcoral; margin-left: 15px; margin-bottom: auto; text-align:center;">
+            <div class="footer-">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>Địa chỉ: Trường Đại học Ngoại Ngữ Tin Học tp HCM</p>
+                <p>Thông tin liên hệ: 0123456789 </p>
+                <p>Địa chỉ email: Huflit.edu.vn</p>
+            </div>
+
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@*@model IEnumerable<Web_BanHang.Models.Product>*@
+@using Web_BanHang.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+
+@{
+    ViewBag.Title = "Index_Customers";
+}
+
+<style>
+    #div-ds {
+        text-align: center;
+        background-color: lightcoral;
+        height: 50px;
+        /*border-radius: 20px 20px 0 0;*/
+    }
+
+    .MenuPage li {
+        display: inline;
+    }
+
+    /*#div_search {
+        padding-top: 15px;
+        height: 30px;
+        width: 100%;
+        text-align: center;
+    }*/
+</style>
+
+<br />
+@using (Html.BeginForm("SearchOption", "Product"))
+{
+    <div style="text-align: center; padding-top: 5px">
+        <h3 style="">SearchOption</h3>
+        <text>Từ</text>
+        <input type="number" name="min" />
+        <text>Đến</text>
+        <input type="number" name="max" />
+        <input type="submit" value="Search" />
+    </div>
+    <div id="div-ds"><h2 style="padding-top: 5px; color:white">Danh sách sản phẩm</h2></div>
+    <div class="container">
+        <div class="row">
+            @foreach (var pro in Model)
+            {
+                <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card-pro">
+                        <a href="/Product/DetailCus/@pro.ProductID"> <br /> <img src="@Url.Content(pro.ImagePro)" height="160" width="160" /></a>
+                        @*<p>@Html.DisplayFor(model => pro.ProductID)</p>*@
+                        @*<img src="@Url.Content(pro.ImagePro)" height="160" width="160" />*@
+                        <a href="/Product/DetailCus/@pro.ProductID"> <br />@Html.DisplayFor(model => pro.NamePro)</a>
+                        <p>@Html.DisplayFor(model => pro.Price)</p>
+                        @*<p><input type="submit" value="Buy" id="buy"/></p>*@
+                        @*<a href="/Product/DetailCus/@pro.ProductID" class="btn btn-default">Detail</a>*@
+                      
+                        <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default">Mua hàng</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+Trang @(Model.PageCount<Model.PageNumber ? 0: Model.PageNumber) / @Model.PageCount
+<div class="MenuPage">
+    @Html.PagedListPager(Model, page => Url.Action("Index_Customers", new { page = page }))
+</div>
+

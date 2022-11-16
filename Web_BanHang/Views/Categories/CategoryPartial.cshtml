@@ -1,0 +1,48 @@
+﻿@using Web_BanHang.Models
+@model List<Category>
+    <style>
+        #div-u {
+            padding-top: 3px;
+            display: flex;
+            background-color: lightcoral;
+            text-decoration: none;
+            /*margin-top: 5px;*/
+        }
+        .div-cate{
+            height:30px;
+            width:100%;
+        }
+        a{
+            color:#a94442;
+            text-decoration:none;
+            font-size:20px;
+            text-align: center;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        /*Them*/
+        ul#div-u{
+            height: 20px;
+            width: 1500px;
+        }
+            #div-u .div-cate a {
+                color: black;
+                padding-top: 0px;
+                color: black;
+                font-size: 20px;
+            }
+            
+    </style>
+<ul style="list-style-type:none" id="div-u">
+    @{ 
+        foreach(var item in Model)
+            {
+                <li class="div-cate">
+                    @Html.ActionLink(item.NameCate, "Index_Customers", "Product", new {category = item.IDCate.Trim()},"")
+                </li>
+                <hr/>
+            }
+    }
+</ul>
+

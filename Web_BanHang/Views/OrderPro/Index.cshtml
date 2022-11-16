@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Web_BanHang.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Create.cshtml";
+}
+
+<h2>ĐƠN HÀNG</h2>
+
+<p>
+    @Html.ActionLink("Tạo đơn hàng mới", "Create")
+</p>
+<table class="table">
+    <tr>
+    <th> Ngày đơn hàng </th>
+    <th> Địa chỉ giao hàng </th>
+    <th> Tên khách hàng </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressDeliverry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.NameCus)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IDCus }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDCus }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.IDCus })
+            </td>
+        </tr>
+    }
+
+</table>

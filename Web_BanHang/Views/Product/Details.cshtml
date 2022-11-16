@@ -1,0 +1,73 @@
+﻿@model Web_BanHang.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Create.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.NamePro)*@
+            <b>Tên sản phẩm</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.DecriptionPro)*@
+            <b>Mô tả</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DecriptionPro)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Category)*@
+            <b>Loại sản phẩm</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            <b>Đơn giá</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ImagePro)*@
+            <b>Hình ảnh</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePro)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Quantity)*@
+            <b>Số lượng</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

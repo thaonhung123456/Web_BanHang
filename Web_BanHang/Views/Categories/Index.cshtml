@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Web_BanHang.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Create.cshtml";
+}
+
+<h2>LOẠI SẢN PHẨM</h2>
+
+
+<p>
+    @Html.ActionLink("Loại sản phẩm mới", "Create")
+</p>
+@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+{
+    <input type="text" name="_name" />
+    <input type="submit" value="Search" />
+}
+<br />
+<table class="table table-bordered" style="border-width:thick">
+    <tr>
+        <th>Mã Loại</th>
+        <th>Tên loại</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDCate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCate)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id })|
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
