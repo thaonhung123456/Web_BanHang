@@ -29,7 +29,7 @@
     </style>
 </head>
 <body>   
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: lightcoral">  
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: lightcoral;border-radius:10px">  
         <div class="container">
             <div class="navbar-header">
                
@@ -89,10 +89,10 @@
     
     <div class="container-fluid body-content">
         <div style="text-align: center">
-            <ul style="text-decoration:none; background-color:palevioletred; margin-top:100px; list-style-type:none; padding: 20px;">
+            <ul style="text-decoration: none; background-color: palevioletred; border-radius: 10px; margin-top: 100px; list-style-type: none; padding: 20px;">
             <li><a href="/OrderDetail/GroupByTop5/" style="color:black;" id="animation-top5">Top 5 sản phẩm bán chạy nhất</a></li>
             </ul>
-            <div class="col-md" id="div-content">
+            <div class="col-md" id="div-content"style="border-radius: 10px">
 
                 @RenderBody()
 
@@ -101,7 +101,7 @@
     </div>
     <br />
     <div class="col-md-">
-        <footer style="background-color: lightcoral; margin-left: 15px; margin-bottom: auto; text-align:center;">
+        <footer style="background-color: lightcoral; margin-left: 15px; text-align:center;border-radius:10px">
             <div class="footer-">
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
                 <p>Địa chỉ: Trường Đại học Ngoại Ngữ Tin Học tp HCM</p>
