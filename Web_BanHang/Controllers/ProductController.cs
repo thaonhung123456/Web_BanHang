@@ -21,14 +21,7 @@ namespace Web_BanHang.Controllers
         {
             var products = db.Products.Include(p => p.Category1);
             return View(products.ToList());
-        }
-        //public ActionResult Index(string _name)
-        //{
-        //    if (_name == null)
-        //        return View(db.Products.ToList());
-        //    else
-        //        return View(db.Products.Where(s => s.NamePro.Contains(_name)).ToList());
-        //}
+        }       
         public ActionResult SearchOption(double min = double.MinValue, double max = double.MaxValue)
         {
             var list = db.Products.Where(p => (double)p.Price >= min && (double)p.Price <= max).ToList();
@@ -55,7 +48,6 @@ namespace Web_BanHang.Controllers
             if (category == null)
             {
                 var productList = db.Products.OrderByDescending(x => x.NamePro);
-                //return View(productList);
                 return View(productList.ToPagedList(pageNum, pageSize));
             }    
             else
@@ -63,7 +55,6 @@ namespace Web_BanHang.Controllers
                 var productList = db.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
                 return View(productList.ToPagedList(pageNum, pageSize));
             }
-            //return View(db.Products.ToList());
         }
         
         public ActionResult Create()

@@ -20,41 +20,7 @@ namespace Web_BanHang.Controllers
                 return View(db.OrderProes.ToList());
             else
                 return View(db.OrderProes.Where(s => s.NameCus.Contains(_name)).ToList());
-        }
-        //public ActionResult Details(int id)
-        //{
-        //    return View(db.OrderProes.Where(s => s.IDCus == id).FirstOrDefault());
-        //}
-        //public ActionResult Edit(string name)
-        //{
-        //    return View(db.OrderProes.Where(s => s.NameCus == name).FirstOrDefault());
-        //}
-        //[HttpPost]
-        //public ActionResult Edit(string name, Customer cate)
-        //{
-        //    db.Entry(cate).State = System.Data.Entity.EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-        //public ActionResult Delete(string name)
-        //{
-        //    return View(db.OrderProes.Where(s => s.NameCus == name).FirstOrDefault());
-        //}
-        //[HttpPost]
-        //public ActionResult Delete(string name, Customer cate)
-        //{
-        //    try
-        //    {
-        //        cate = db.OrderProes.Where(s => s.NameCus == name).FirstOrDefault();
-        //        db.Customers.Remove(cate);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return Content("This data is using in other table, Error Delete!");
-        //    }
-        //}
+        }       
         public ActionResult Details(int id)
         {
             return View(db.OrderProes.Where(s => s.IDCus == id).FirstOrDefault());

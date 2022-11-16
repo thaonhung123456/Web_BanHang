@@ -56,7 +56,7 @@
             <div class="control-label col-md-2">
                 <b>Hình ảnh</b>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10">                
                 @Html.TextBoxFor(model => model.ImagePro, null, new { type = "file", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ImagePro, "", new { @class = "text-danger" })
             </div>
