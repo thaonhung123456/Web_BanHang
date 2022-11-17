@@ -3,8 +3,10 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<Product>
 
+
 @{
     ViewBag.Title = "Index_Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
@@ -18,7 +20,8 @@
     .MenuPage li {
         display: inline;
     }
-    .btn-default{
+
+    .btn-default {
         background-color: lightcoral
     }
     /*#div_search {
@@ -32,43 +35,38 @@
 <br />
 @using (Html.BeginForm("SearchOption", "Product"))
 {
-  
-<div style="border-radius:10px;border:1px solid black;background-color:lightcoral ">
-    <div id="div-ds"><h2 style="padding-top: 5px; color:white">Danh sách sản phẩm</h2></div>
-    <div style="text-align: center; padding-top: 5px;padding-bottom:20px">
 
-        <text>Từ</text>
-        <input type="number" name="min" />
-        <text>Đến</text>
-        <input type="number" name="max" />
-        <input type="submit" value="Search" />
-    </div>
-    <div class="container">
-        <div class="row">
-            @foreach (var pro in Model)
-            {
-                <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card-pro" style="border:1px solid black; margin:10px; padding:10px;border-radius:10px;background-color:white;padding-bottom:10px">
-                        <a href="/Product/DetailCus/@pro.ProductID"> <br /> <img src="@Url.Content(pro.ImagePro)" height="160" width="160" /></a>
-                        @*<p>@Html.DisplayFor(model => pro.ProductID)</p>*@
-                        @*<img src="@Url.Content(pro.ImagePro)" height="160" width="160" />*@
-                        <a href="/Product/DetailCus/@pro.ProductID"> <br />@Html.DisplayFor(model => pro.NamePro)</a>
-                        <p>@Html.DisplayFor(model => pro.Price)</p>
-                        @*<p><input type="submit" value="Buy" id="buy"/></p>*@
-                        @*<a href="/Product/DetailCus/@pro.ProductID" class="btn btn-default">Detail</a>*@
+    <div style="border-radius:10px;border:1px solid black;background-color:lightcoral ">
+        <div id="div-ds"><h2 style="padding-top: 5px; color:white">Danh sách sản phẩm</h2></div>
+        <div style="text-align: center; padding-top: 5px;padding-bottom:20px">
 
-                        <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default">Mua hàng</a>
-                    </div>
-                </div>
-            }
+            <text>Từ</text>
+            <input type="number" name="min" />
+            <text>Đến</text>
+            <input type="number" name="max" />
+            <input type="submit" value="Search" />
         </div>
-    </div>
-    Trang @(Model.PageCount<Model.PageNumber ? 0: Model.PageNumber) / @Model.PageCount
-    <div class="MenuPage">
-        @Html.PagedListPager(Model, page => Url.Action("Index_Customers", new { page = page }))
-    </div>
+        <div class="container">
+            <div class="row">
+                @foreach (var pro in Model)
+                {
+                    <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="card-pro" style="border:1px solid black; margin:10px; padding:10px;border-radius:10px;background-color:white;padding-bottom:10px">
+                            <a href="/Product/DetailCus/@pro.ProductID"> <br /> <img src="@Url.Content(pro.ImagePro)" height="160" width="160" /></a>
+                            <a href="/Product/DetailCus/@pro.ProductID"> <br />@Html.DisplayFor(model => pro.NamePro)</a>
+                            <p>@Html.DisplayFor(model => pro.Price)</p>
+                            <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default">Mua hàng</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        Trang @(Model.PageCount<Model.PageNumber ? 0: Model.PageNumber) / @Model.PageCount
+        <div class="MenuPage">
+            @Html.PagedListPager(Model, page => Url.Action("Index_Customers", new { page = page }))
+        </div>
 
 
-</div>
-    
+    </div>
+
 }

@@ -9,39 +9,31 @@
         margin-left: 400px;
     }
     .form-control{
-        width: 30%;
+        width: 20%;
     }
 </style>
 <body>
     <div id="contant">
         <div id="div_top">
-            <h2 style="text-align: center; font-size: 50px; font-family: monospace "> @Html.DisplayFor(model => model.NamePro)</h2>
+            <h2 style="text-align: center; font-size: 30px"> @Html.DisplayFor(model => model.NamePro)</h2>
         </div>
 
-       
-            <div class="control-label col-md-6">
-                <img src="@Url.Content(Model.ImagePro)" height="500" width="500" />
-            </div>
-            
-            <div class="control-label col-md-4">
-                @Html.DisplayFor(model => model.DecriptionPro)
 
-                <p style="font-size:50px ;font-family:cursive">  @Html.DisplayFor(model => model.Price)0 Vnd</p>
-                <a href="/ShoppingCart/AddToCart/@Model.ProductID" class="btn btn-default">Mua hàng</a>
-            </div>
-
-        <div>
-            <footer>
-                <p>
-                    @Html.ActionLink("Trở về", "Index_Customers")
-                </p>
-
-            </footer>
-
+        <div class="control-label">
+            <img src="@Url.Content(Model.ImagePro)" height="200" width="250" />
         </div>
+
+        <div class="control-label col-md-5">
+            @Html.DisplayFor(model => model.DecriptionPro)
+
+            <p style="font-size:20px">  @Html.DisplayFor(model => model.Price) Vnd</p>
+            <a href="/ShoppingCart/AddToCart/@Model.ProductID" class="btn btn-default">Mua hàng</a>
+        </div>
+
     </div>
-   
-   
+    <div id="div_footer">
+        @Html.ActionLink("Trở về", "Index_Customers")
+    </div>
 
 </body>
 

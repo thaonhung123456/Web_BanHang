@@ -16,7 +16,7 @@ namespace Web_BanHang.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LoginAccount(AdminUser _user)
+        public ActionResult LoginAcount(AdminUser _user)
         {
             var check = db.AdminUsers.Where(s => s.NameUser == _user.NameUser && s.PasswordUser == _user.PasswordUser).FirstOrDefault();
             if (check == null)
@@ -27,10 +27,8 @@ namespace Web_BanHang.Controllers
             else
             {
                 db.Configuration.ValidateOnSaveEnabled = false;
-                //Session["ID"] = _user.ID;
-                //Session["PasswordUser"] = _user.PasswordUser;
                 Session["NameUser"] = _user.NameUser;
-                return RedirectToAction("ProductList", "Product");
+                return RedirectToAction("Index_Customers", "Product");
             }
         }
         public ActionResult RegisterUser()

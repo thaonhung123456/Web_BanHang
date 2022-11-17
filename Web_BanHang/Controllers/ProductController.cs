@@ -21,7 +21,22 @@ namespace Web_BanHang.Controllers
         {
             var products = db.Products.Include(p => p.Category1);
             return View(products.ToList());
-        }       
+        }
+        public ActionResult Index_Customers(string category, int? page, double min = double.MinValue, double max = double.MaxValue)
+        {
+            int pageSize = 8;
+            int pageNum = (page ?? 1);
+            if (category == null)
+            {
+                var productList = db.Products.OrderByDescending(x => x.NamePro);
+                return View(productList.ToPagedList(pageNum, pageSize));
+            }
+            else
+            {
+                var productList = db.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
+                return View(productList.ToPagedList(pageNum, pageSize));
+            }
+        }
         public ActionResult SearchOption(double min = double.MinValue, double max = double.MaxValue)
         {
             var list = db.Products.Where(p => (double)p.Price >= min && (double)p.Price <= max).ToList();
@@ -41,21 +56,7 @@ namespace Web_BanHang.Controllers
             else
                 return View(db.Products.Where(s => s.NamePro.Contains(_name)).ToList());
         }
-        public ActionResult Index_Customers(string category, int? page, double min = double.MinValue, double max = double.MaxValue)
-        {
-            int pageSize = 8;
-            int pageNum = (page ?? 1);
-            if (category == null)
-            {
-                var productList = db.Products.OrderByDescending(x => x.NamePro);
-                return View(productList.ToPagedList(pageNum, pageSize));
-            }    
-            else
-            {
-                var productList = db.Products.OrderByDescending(x => x.Category).Where(x => x.Category == category);
-                return View(productList.ToPagedList(pageNum, pageSize));
-            }
-        }
+        
         
         public ActionResult Create()
         {
@@ -125,65 +126,6 @@ namespace Web_BanHang.Controllers
                 return Content("This data is using in other table, Error Delete!");
             }
         }
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Product product = db.Products.Find(id);
-        //    if (product == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.Category = new SelectList(db.Categories, "IDCate", "NameCate", product.Category);
-        //    return View(product);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "ProductID,NamePro,DecriptionPro,Category,Price,ImagePro")] Product product)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(product).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.Category = new SelectList(db.Categories, "IDCate", "NameCate", product.Category);
-        //    return View(product);
-        //}
-        //public ActionResult Create()
-        //{
-        //    List<Category> list = db.Categories.ToList();
-        //    ViewBag.listCategory = new SelectList(list, "IDCate", "NameCate", "");
-        //    Product pro = new Product();
-        //    return View(pro);
-        //}
-
-        //[HttpPost]
-        //public ActionResult Create(Product pro)
-        //{
-        //    List<Category> list = db.Categories.ToList();
-        //    try
-        //    {
-        //        if (pro.UploadImage != null)
-        //        {
-        //            string filename = Path.GetFileNameWithoutExtension(pro.UploadImage.FileName);
-        //            string extent = Path.GetExtension(pro.UploadImage.FileName);
-        //            filename = filename + extent;
-        //            pro.ImagePro = "~/Content/images/" + filename;
-        //            pro.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), filename));
-        //        }
-        //        ViewBag.listCategory = new SelectList(list, "IDCate", "NameCate", "");
-        //        db.Products.Add(pro);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        
     }
 }

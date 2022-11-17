@@ -14,7 +14,7 @@
 @using (Html.BeginForm("RegisterUser", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <p>@Html.LabelFor(model => model.ID)</p>
+    <p>Mã ID</p>
     <p>@Html.EditorFor(model => model.ID)</p>
     <p>
         @Html.ValidationMessageFor(model => model.ID)

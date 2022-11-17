@@ -10,6 +10,7 @@
     <style>
         .search{
             text-align:center;
+            
         }
         li.format-hello {
             padding-top: 15px;
@@ -25,6 +26,9 @@
         }
         .navbar-inverse .navbar-nav > li > a {
             color: black;
+        }
+        input, select, textarea {
+            max-width: 500px;
         }
     </style>
 </head>
@@ -76,8 +80,8 @@
             <div class="search">
                 @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                 {
-                    <input style="height:30px; width:1000px" type="text" name="_name" />
-                    <input style="height:30px" type="submit" value="Search" />
+                    <input style="height: 30px; width: 100%; border-radius: 5px;" type="text" name="_name" />
+                    <input style="height: 30px; border-radius: 5px;margin-right:20px" type="submit" value="Tìm" />
                 }
             </div>
 
